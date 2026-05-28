@@ -1,4 +1,4 @@
-#Ejercicio Characters:
+#Ejercicio Characters
 #Se quiere desarrollar un sistema simple para representar personajes de un juego de rol. 
 # Cada personaje tiene un nombre, una clase de personaje (guerrero, mago, arquero, etc.), un nivel, puntos de vida (HP) 
 # y puntos de maná (MP).
@@ -32,7 +32,7 @@ darius = Bruiser('Darius', 'Brusier', 3, 1, 100)
 print(garen)
 garen.GolpeMelee(darius)
 
-class Tirador(Champ):
+class ADC(Champ):
     def __init__(self, nombre, clase, rango, nivel, hp):
         super().__init__(nombre, clase, nivel, hp)
         self.rango = rango 
@@ -41,6 +41,53 @@ class Tirador(Champ):
         daño_causado = self.rango / 2 
         enemigo.DañoRecibido(daño_causado)
 
-draven = Tirador('Draven', 'Tirador', 50, 2, 50)
+draven = ADC('Draven', 'Tirador', 50, 2, 50)
 
 draven.GolpeRanged(garen)
+
+class Mage(Champ):
+    def __init__ (self, nombre, clase, mana, ap, nivel, hp ):
+        super().__init__(nombre, clase, nivel, hp)
+        self.ap = ap
+        self.mana = mana
+    def hability(self, enemigo):
+        if self.mana >= 2 :
+            self.mana = self.mana - 2
+            daño_causado = self.ap / 10 
+            print(f"{self.nombre} ha hecho {daño_causado} de daño a {enemigo.nombre}")
+            enemigo.DañoRecibido(daño_causado)
+        else:
+            print(f"{self.nombre} no tiene mana para usar la habilidad")
+
+Lux = Mage("Lux","Mago", 200 ,100 , 3 , 150 )
+        
+Lux.hability(draven)
+
+print("---Crear nuevo Champ---")
+print("De que clase desea su personaje?")
+print("1- Bruiser")
+print("2- Adc")
+print("3- Mage")
+opcion = input("Seleccione una opción:")
+print("---Datos del Champ---")
+variable_nombre = input("Nombre: ")
+variable_Clase = input("Tipo: ")
+
+match opcion:
+    case "1":
+        dañoo = input("Fuerza: ")
+        objeto = Bruiser(variable_nombre, variable_Clase, dañoo, 1, 100)
+    case "2":
+        rangoo = input("Distancia de Ataque: ")
+        objeto = ADC(variable_nombre, variable_Clase, rangoo, 1, 100)
+    case "3":
+        manaa = input("Cantidad de Mana: ")
+        aap = input("Poder de habilidad: ")
+        objeto = Mage(variable_nombre, variable_Clase, manaa, aap, 1, 100)
+    case _: 
+        print("Opción no valida")
+        objeto = None 
+if objeto:
+    print(f"Creado con exito un champ de tipo {type(objeto).__name__}!")
+    objeto
+    print(objeto)

@@ -28,23 +28,10 @@ class Ave(Mascota):
         super().__init__(nombre, especie, edad, energia)
         self.color = color
         self.raza = raza
-    def enviar_mensaje(self):
-        if self._mensaje_vuelo is not None:
-            print(f"  {self.nombre} ya está en vuelo con un mensaje. Esperá que vuelva.")
-            return
-
-        mensaje = input(f"  Escribí el mensaje para enviar con {self.nombre}: ")
-        self._mensaje_vuelo = mensaje
-        print(f"  {self.nombre} salió volando con tu mensaje... 🕊️")
-
-    def recibir_mensaje(self):
-        if self._mensaje_vuelo is None:
-            print(f"  {self.nombre} no tiene ningún mensaje pendiente.")
-            return
-
-        print(f"  {self.nombre} llegó con el mensaje:")
-        print(f"  >>> {self._mensaje_vuelo}")
-        self._mensaje_vuelo = None   # el mensaje se entregó, paloma libre
+    def enviar_mensaje(self, mensaje):
+        print('pio pio, decime un mensaje que quieras enviar')
+        input(mensaje)
+        return f'pio pio pio, el mensaje es el siguiente: {mensaje}'
 
 dogui = Perro('dogui','Perro', 'labrador', 3)
 pirulo = Perro('Pirulo','Perro', 'Beagle', 2)
@@ -55,13 +42,4 @@ print(pirulo)
 print(dogui.saludar())
 print(pirulo.saludar())
 
-paloma.enviar_mensaje()
-print()
-
-input('presiona enter cuando quieras recibir el mensaje')
-print()
-
-paloma.recibir_mensaje()
-
-#==========================================
-
+paloma.enviar_mensaje() #ESTA MAL :( 
